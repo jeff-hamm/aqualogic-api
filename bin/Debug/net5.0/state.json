@@ -1,0 +1,442 @@
+{
+  "poolStatusStore": {
+    "displayText": {
+      "timestamp": "2021-05-02T23:05:26.3195306Z",
+      "text": "Default\nMenu",
+      "isFlashing": false
+    },
+    "flashingStates": [
+      0
+    ],
+    "statusValues": [
+      {
+        "item": {
+          "children": [],
+          "name": "PoolTemp",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Pool Temp\\n(?<Value>[\\d\\.]+)_(?<Unit>[FfCc])$",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "74",
+        "lastModified": "2021-02-04T17:13:05.8971707Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "HeatPump",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Heater1\n(?<Value>Auto Control|Manual Off)$",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "Auto Control",
+        "lastModified": "2021-05-02T22:59:26.1492521Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "SaltLevel",
+          "type": "Sensor",
+          "format": "$1 $2",
+          "test": {
+            "pattern": "^Salt Level\\n(?<Value>[\\d\\.]+)\\s+(?<Unit>g/L|PPM|)$",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "3300 PPM",
+        "lastModified": "2021-05-02T22:59:22.1437965Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "CheckSystem",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Check System\n(?<Value>.+)$",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "Cell Sensor Open",
+        "lastModified": "2021-04-30T01:32:59.3219247Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "PoolChlorinator",
+          "type": "Sensor",
+          "format": "$1%",
+          "test": {
+            "pattern": "^Pool Chlorinator\\n(?<Value>[\\d\\.]+)%$",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "80%",
+        "lastModified": "2021-02-04T17:13:06.7900027Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "Date",
+          "type": "Sensor",
+          "format": "$1 $2:$3 $4M",
+          "test": {
+            "pattern": "^(?<Day>Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday)\\n(?<Hour>\\d+).(?<Minute>\\d+)(?<Meridiem>[AP])$",
+            "options": 0
+          },
+          "isFlashing": true
+        },
+        "value": "Tuesday 6:58 PM",
+        "lastModified": "2021-05-02T22:59:27.1671785Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "AirTemp",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Air Temp\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$",
+            "options": 0
+          },
+          "isFlashing": null
+        },
+        "value": "85",
+        "lastModified": "2021-05-02T22:59:18.1423515Z"
+      }
+    ],
+    "settingValues": [
+      {
+        "item": {
+          "unit": "String",
+          "inputs": [
+            32,
+            16
+          ],
+          "children": [],
+          "name": "Instant Salt",
+          "type": "Setting",
+          "format": "$1",
+          "test": {
+            "pattern": "^Instant Salt\\n(.*)$",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "Chlorinator Off",
+        "lastModified": "2021-02-04T16:53:26.7065642Z"
+      },
+      {
+        "item": {
+          "unit": "String",
+          "inputs": [
+            32
+          ],
+          "children": [],
+          "name": "Teach Wireless",
+          "type": "Setting",
+          "format": null,
+          "test": {
+            "pattern": "^Teach Wireless:\n(?<Value>.+)$",
+            "options": 0
+          },
+          "isFlashing": true
+        },
+        "value": "Teach Wireless:\n+ to start",
+        "lastModified": "2021-02-04T16:52:53.3112708Z"
+      },
+      {
+        "item": {
+          "unit": "Degrees",
+          "inputs": [
+            32,
+            16
+          ],
+          "children": [],
+          "name": "Spa Heater1",
+          "type": "Setting",
+          "format": "${Value}",
+          "test": {
+            "pattern": "^Spa Heater1\\n((?<Value>[\\d\\.]+).(?<Unit>[FfCc])|(?<Value>Off))$",
+            "options": 0
+          },
+          "isFlashing": true
+        },
+        "value": "Off",
+        "lastModified": "2021-05-02T22:59:06.1423536Z"
+      },
+      {
+        "item": {
+          "unit": "Degrees",
+          "inputs": [
+            32,
+            16
+          ],
+          "children": [],
+          "name": "Pool Heater1",
+          "type": "Setting",
+          "format": "${Value}",
+          "test": {
+            "pattern": "^Pool Heater1\\n((?<Value>[\\d\\.]+).(?<Unit>[FfCc])|(?<Value>Off))$",
+            "options": 0
+          },
+          "isFlashing": true
+        },
+        "value": "Off",
+        "lastModified": "2021-05-02T22:51:35.937531Z"
+      },
+      {
+        "item": {
+          "unit": "String",
+          "inputs": null,
+          "children": [],
+          "name": "Set Day and Time - Day",
+          "type": "Setting",
+          "format": "${Day}",
+          "test": {
+            "pattern": "^Set Day and Time\\n(?<Day>[^\\s]+)\\s+(?<Hour>\\d+).(?<Minute>\\d+)(?<Meridiem>[AP])$",
+            "options": 0
+          },
+          "isFlashing": true
+        },
+        "value": "Thursday",
+        "lastModified": "2021-02-04T16:52:51.7964697Z"
+      }
+    ],
+    "timestamp": "0001-01-01T00:00:00",
+    "states": [
+      0,
+      8
+    ]
+  },
+  "poolHistory": {
+    "displayText": {
+      "timestamp": "2021-05-02T23:05:26.3195306Z",
+      "text": "Default\nMenu",
+      "isFlashing": false
+    },
+    "flashingStates": [
+      0
+    ],
+    "statusValues": [
+      {
+        "item": {
+          "children": [],
+          "name": "PoolTemp",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Pool Temp\\n(?<Value>[\\d\\.]+)_(?<Unit>[FfCc])$",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "74",
+        "lastModified": "2021-02-04T17:13:05.8971707Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "HeatPump",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Heater1\n(?<Value>Auto Control|Manual Off)$",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "Auto Control",
+        "lastModified": "2021-05-02T22:59:26.1492521Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "SaltLevel",
+          "type": "Sensor",
+          "format": "$1 $2",
+          "test": {
+            "pattern": "^Salt Level\\n(?<Value>[\\d\\.]+)\\s+(?<Unit>g/L|PPM|)$",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "3300 PPM",
+        "lastModified": "2021-05-02T22:59:22.1437965Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "CheckSystem",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Check System\n(?<Value>.+)$",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "Cell Sensor Open",
+        "lastModified": "2021-04-30T01:32:59.3219247Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "PoolChlorinator",
+          "type": "Sensor",
+          "format": "$1%",
+          "test": {
+            "pattern": "^Pool Chlorinator\\n(?<Value>[\\d\\.]+)%$",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "80%",
+        "lastModified": "2021-02-04T17:13:06.7900027Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "Date",
+          "type": "Sensor",
+          "format": "$1 $2:$3 $4M",
+          "test": {
+            "pattern": "^(?<Day>Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday)\\n(?<Hour>\\d+).(?<Minute>\\d+)(?<Meridiem>[AP])$",
+            "options": 0
+          },
+          "isFlashing": true
+        },
+        "value": "Tuesday 6:58 PM",
+        "lastModified": "2021-05-02T22:59:27.1671785Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "AirTemp",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Air Temp\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$",
+            "options": 0
+          },
+          "isFlashing": null
+        },
+        "value": "85",
+        "lastModified": "2021-05-02T22:59:18.1423515Z"
+      }
+    ],
+    "settingValues": [
+      {
+        "item": {
+          "unit": "String",
+          "inputs": [
+            32,
+            16
+          ],
+          "children": [],
+          "name": "Instant Salt",
+          "type": "Setting",
+          "format": "$1",
+          "test": {
+            "pattern": "^Instant Salt\\n(.*)$",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "Chlorinator Off",
+        "lastModified": "2021-02-04T16:53:26.7065642Z"
+      },
+      {
+        "item": {
+          "unit": "String",
+          "inputs": [
+            32
+          ],
+          "children": [],
+          "name": "Teach Wireless",
+          "type": "Setting",
+          "format": null,
+          "test": {
+            "pattern": "^Teach Wireless:\n(?<Value>.+)$",
+            "options": 0
+          },
+          "isFlashing": true
+        },
+        "value": "Teach Wireless:\n+ to start",
+        "lastModified": "2021-02-04T16:52:53.3112708Z"
+      },
+      {
+        "item": {
+          "unit": "Degrees",
+          "inputs": [
+            32,
+            16
+          ],
+          "children": [],
+          "name": "Spa Heater1",
+          "type": "Setting",
+          "format": "${Value}",
+          "test": {
+            "pattern": "^Spa Heater1\\n((?<Value>[\\d\\.]+).(?<Unit>[FfCc])|(?<Value>Off))$",
+            "options": 0
+          },
+          "isFlashing": true
+        },
+        "value": "Off",
+        "lastModified": "2021-05-02T22:59:06.1423536Z"
+      },
+      {
+        "item": {
+          "unit": "Degrees",
+          "inputs": [
+            32,
+            16
+          ],
+          "children": [],
+          "name": "Pool Heater1",
+          "type": "Setting",
+          "format": "${Value}",
+          "test": {
+            "pattern": "^Pool Heater1\\n((?<Value>[\\d\\.]+).(?<Unit>[FfCc])|(?<Value>Off))$",
+            "options": 0
+          },
+          "isFlashing": true
+        },
+        "value": "Off",
+        "lastModified": "2021-05-02T22:51:35.937531Z"
+      },
+      {
+        "item": {
+          "unit": "String",
+          "inputs": null,
+          "children": [],
+          "name": "Set Day and Time - Day",
+          "type": "Setting",
+          "format": "${Day}",
+          "test": {
+            "pattern": "^Set Day and Time\\n(?<Day>[^\\s]+)\\s+(?<Hour>\\d+).(?<Minute>\\d+)(?<Meridiem>[AP])$",
+            "options": 0
+          },
+          "isFlashing": true
+        },
+        "value": "Thursday",
+        "lastModified": "2021-02-04T16:52:51.7964697Z"
+      }
+    ],
+    "timestamp": "0001-01-01T00:00:00",
+    "states": [
+      0,
+      8
+    ]
+  }
+}

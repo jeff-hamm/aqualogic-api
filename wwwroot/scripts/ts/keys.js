@@ -1,0 +1,31 @@
+export var Keys;
+(function (Keys) {
+    Keys[Keys["None"] = 0] = "None";
+    Keys[Keys["RIGHT"] = 1] = "RIGHT";
+    Keys[Keys["MENU"] = 2] = "MENU";
+    Keys[Keys["LEFT"] = 4] = "LEFT";
+    Keys[Keys["SERVICE"] = 8] = "SERVICE";
+    Keys[Keys["MINUS"] = 16] = "MINUS";
+    Keys[Keys["PLUS"] = 32] = "PLUS";
+    Keys[Keys["POOL_SPA"] = 64] = "POOL_SPA";
+    Keys[Keys["FILTER"] = 128] = "FILTER";
+    Keys[Keys["LIGHTS"] = 256] = "LIGHTS";
+    Keys[Keys["AUX_1"] = 512] = "AUX_1";
+    Keys[Keys["AUX_2"] = 1024] = "AUX_2";
+    Keys[Keys["AUX_3"] = 2048] = "AUX_3";
+    Keys[Keys["AUX_4"] = 4096] = "AUX_4";
+    Keys[Keys["AUX_5"] = 8192] = "AUX_5";
+    Keys[Keys["AUX_6"] = 16384] = "AUX_6";
+    Keys[Keys["AUX_7"] = 32768] = "AUX_7";
+    Keys[Keys["VALVE_3"] = 65536] = "VALVE_3";
+    Keys[Keys["VALVE_4"] = 131072] = "VALVE_4";
+    Keys[Keys["HEATER_1"] = 262144] = "HEATER_1";
+    Keys[Keys["AUX_8"] = 524288] = "AUX_8";
+    Keys[Keys["AUX_9"] = 1048576] = "AUX_9";
+    Keys[Keys["AUX_10"] = 2097152] = "AUX_10";
+    Keys[Keys["AUX_11"] = 4194304] = "AUX_11";
+    Keys[Keys["AUX_12"] = 8388608] = "AUX_12";
+    Keys[Keys["AUX_13"] = 16777216] = "AUX_13";
+    Keys[Keys["AUX_14"] = 33554432] = "AUX_14";
+})(Keys || (Keys = {}));
+//# sourceMappingURL=keys.js.map

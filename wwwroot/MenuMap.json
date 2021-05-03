@@ -1,0 +1,277 @@
+﻿  {
+    "switches": [
+      {
+        "name": "Light",
+        "type": "Switch",
+        "state": "LIGHTS"
+      },
+      {
+        "name": "Filter",
+        "type": "Switch",
+        "state": "FILTER"
+      },
+      {
+        "name": "Heater1",
+        "type": "Switch",
+        "state": "HEATER_1"
+      },
+      {
+        "name": "Solar Heater",
+        "type": "Switch",
+        "state": "AUX_1"
+      },
+      {
+        "name": "Pool",
+        "type": "Switch",
+        "state": "POOL"
+      },
+      {
+        "name": "Spa",
+        "type": "Switch",
+        "state": "Spa"
+      }
+
+    ],
+    "menus": [
+      {
+        "$id": "1", 
+        "name": "Settings",
+        "test": "/^Settings\nMenu$/",
+        "type": "Menu",
+        "inputs": [ "Left", "Right" ],
+        "children": [
+          {
+            "name": "Spa Heater1",
+            "test": "/^Spa Heater1\\n((?<Value>[\\d\\.]+).(?<Unit>[FfCc])|(?<Value>Off))$/",
+            "format": "${Value}",
+            "unit": "Degrees",
+            "type": "Setting",
+            "inputs": [ "PLUS", "MINUS" ],
+            "isFlashing": true,
+            "parent": {
+                "$ref": "1"
+            } 
+          },
+          {
+            "name": "Pool Heater1",
+            "test": "/^Pool Heater1\\n((?<Value>[\\d\\.]+).(?<Unit>[FfCc])|(?<Value>Off))$/",
+            "format": "${Value}",
+            "unit": "Degrees",
+            "type": "Setting",
+            "inputs": [ "PLUS", "MINUS" ],
+            "isFlashing": true,
+            "parent": {
+              "$ref": "1"
+            }
+          },
+          {
+            "name": "Spa Solar",
+            "test": "/^Spa Solar\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$/",
+            "format": "$1",
+            "unit": "Degrees",
+            "type": "Setting",
+            "inputs": [ "PLUS", "MINUS" ],
+            "isFlashing": true,
+            "parent": {
+              "$ref": "1"
+            }
+          },
+          {
+            "name": "Pool Solar",
+            "test": "/^Pool Solar\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$/",
+            "format": "$1",
+            "unit": "Degrees",
+            "type": "Setting",
+            "inputs": [ "PLUS", "MINUS" ],
+            "isFlashing": true,
+            "parent": {
+              "$ref": "1"
+            }
+          },
+          {
+            "name": "Super Chlorinate",
+            "test": "/^Super Chlorinate\n(?<Value>Off|On)$/",
+            "format": "$1",
+            "unit": "Boolean",
+            "type": "Setting",
+            "inputs": [ "PLUS", "MINUS" ],
+            "isFlashing": true,
+            "parent": {
+              "$ref": "1"
+            }
+          },
+          {
+            "name": "Spa Chlorinator",
+            "test": "/^Spa Chlorinator\n(?<Value>[\\d\\.]+)%$/",
+            "format": "$1%",
+            "unit": "Percentage",
+            "type": "Setting",
+            "inputs": [ "PLUS", "MINUS" ],
+            "isFlashing": true,
+            "parent": {
+              "$ref": "1"
+            }
+          },
+          {
+            "name": "Pool Chlorinator",
+            "test": "/^Pool Chlorinator\\n(?<Value>[\\d\\.]+)%$/",
+            "format": "$1%",
+            "unit": "Percentage",
+            "type": "Setting",
+            "inputs": [ "PLUS", "MINUS" ],
+            "isFlashing": true,
+            "parent": {
+              "$ref": "1"
+            }
+          }
+        ]
+      },
+      {
+        "$id":  "2", 
+        "name": "Timers",
+        "test": "/^Timers\nMenu$/",
+        "type": "Menu",
+        "children": []
+      },
+      {
+
+        "$id": "3",
+        "name": "Diagnostic",
+        "test": "/^Diagnostic\nMenu$/",
+        "type": "Menu",
+        "children": [
+          {
+            "name": "Flow Switch",
+            "test": "/^Flow Switch\\n(.*)$/",
+            "format": "$1",
+            "unit": "String",
+            "type": "Sensor",
+            "isFlashing": false,
+            "parent": {
+              "$ref": "3"
+            }
+          },
+          {
+            "name": "Cell Temp Sensor",
+            "test": "/^Cell Temp Sensor\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$/",
+            "format": "$1",
+            "unit": "Degrees",
+            "type": "Sensor",
+            "isFlashing": null
+          },
+          {
+            "name": "Water Sensor",
+            "test": "/^Water Sensor\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$/",
+            "format": "$1",
+            "unit": "Degrees",
+            "type": "Sensor",
+            "isFlashing": null
+          },
+          {
+            "name": "Air Sensor",
+            "test": "/^Air Sensor\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$/",
+            "format": "$1",
+            "unit": "Degrees",
+            "type": "Sensor",
+            "isFlashing": null
+          },
+          {
+            "name": "Solar Sensor",
+            "test": "/^Solar Sensor\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$/",
+            "format": "$1",
+            "unit": "Degrees",
+            "type": "Sensor",
+            "isFlashing": null
+          }
+        ]
+      },
+      {
+        "$id": "4",
+        "name": "Configuration",
+        "test": "/^Configuration\nMenu(?<Locked>-Locked)?$/",
+        "format": "$1",
+        "type": "Menu",
+        "children": []
+      },
+      {
+        "$id": "5",
+        "name": "Default",
+        "test": "/^Default\nMenu?$/",
+        "type": "Menu",
+        "children": [
+          {
+            "name": "Date",
+            "test": "/^(?<Day>Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday)\\n(?<Hour>\\d+).(?<Minute>\\d+)(?<Meridiem>[AP])$/",
+            "format": "$1 $2:$3 $4M",
+            "unit": "DateTime",
+            "type": "Sensor",
+            "isFlashing": true
+          },
+          {
+            "name": "PoolTemp",
+            "test": "/^Pool Temp\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$/",
+            "format": "$1",
+            "unit": "Degrees",
+            "type": "Sensor",
+            "isFlashing": null
+          },
+          {
+            "name": "SpaTemp",
+            "test": "/^Spa Temp\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$/",
+            "format": "$1",
+            "unit": "Degrees",
+            "type": "Sensor",
+            "isFlashing": null
+          },
+          {
+            "name": "AirTemp",
+            "test": "/^Air Temp\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$/",
+            "format": "$1",
+            "unit": "Degrees",
+            "type": "Sensor",
+            "isFlashing": null
+          },
+          {
+            "name": "PoolChlorinator",
+            "test": "/^Pool Chlorinator\\n(?<Value>[\\d\\.]+)%$/",
+            "format": "$1%",
+            "unit": "Percentage",
+            "type": "Sensor",
+            "isFlashing": false
+          },
+          {
+            "name": "SpaChlorinator",
+            "test": "/^Spa Chlorinator\\n(?<Value>[\\d\\.]+)%$/",
+            "format": "$1%",
+            "unit": "Percentage",
+            "type": "Sensor",
+            "isFlashing": false
+          },
+          {
+            "name": "SaltLevel",
+            "test": "/^Salt Level\\n(?<Value>[\\d\\.]+)\\s+(?<Unit>g/L|PPM|)$/",
+            "format": "$1 $2",
+            "unit": "Concentration",
+            "type": "Sensor",
+            "isFlashing": false
+          },
+          {
+            "name": "CheckSystem",
+            "test": "/^Check System\n(?<Value>.+)$/",
+            "format": "$1",
+            "unit": "String",
+            "type": "Sensor",
+            "isFlashing": false
+          },
+          {
+            "name": "HeatPump",
+            "test": "/^Heater1\n(?<Value>Auto Control|Manual Off)$/",
+            "format": "$1",
+            "unit": "AutoMode",
+            "type": "Sensor",
+            "isFlashing": false
+          }
+        ]
+      }
+    ]
+  }

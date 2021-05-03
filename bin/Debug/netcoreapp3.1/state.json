@@ -1,0 +1,3 @@
+{
+  "poolStatusStore": {"displayText":[{"text":"Check System","flash":false},{"text":"Cell Sensor Open","flash":false}],"states":"CHECK_SYSTEM, POOL, AUX_2","statesValue":268,"flashingStates":0,"flashingStatesValue":0,"statusValues":[{"id":3,"name":"AirTemp","text":"Air Temp","value":62,"unit":"DegreesF","modified":false},{"id":6,"name":"SaltLevel","text":"Salt Level","value":100,"unit":"PartsPerMillion","modified":false},{"id":7,"name":"CheckSystem","text":"Check System","value":"Cell Sensor Open","unit":"String","modified":false},{"id":8,"name":"HeatPump","text":"Heat Pump","value":"Auto Control","unit":"String","modified":false}]}
+} 

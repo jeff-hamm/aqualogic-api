@@ -1,0 +1,119 @@
+﻿@page
+@model AqualogicJumper.Pages.IndexModel
+@{
+}
+<html>
+<head>
+    <title>Port Pool, LPN</title>
+    <link href='css/WebsStyle.css' rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="c3"> 
+        <font size="+2"><span class="c1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pool</span> </font><big>
+            <span class="c1">
+                &nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="+1">
+                    <big>
+                        &nbsp;<span class="logo" style="width: 24px; height: 24px;" alt=""> JUMPER<sup><small>&#174;</small></sup>
+                    </big>
+                </font>
+            </span>
+        </big>
+    </div>
+<table class="c4" summary="Container for LCD and Keypad" border="0" cellpadding="10" cellspacing="10">
+    <tbody>
+    <tr>
+        <td class="c1">
+            <br>
+            <br>
+            <table id="displayText" class="c2" summary="LDC Two By Twenty Display" border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                <tr>
+                    <td id="displayText_0" data-render="displayText"  class="WEBS_TEXT_DISPLAY c1" onclick="ProcessConfigInput()" valign="bottom">                    </td>
+                </tr>
+                <tr>
+                    <td id="displayText_1" data-render="displayText" class="WEBS_TEXT_DISPLAY c1" onclick="ProcessConfigInput()" valign="top">                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+            <table style="width: 360px; height: 57px;" class="c4" summary="Check System Status" border="0" cellpadding="2" cellspacing="2">
+                <tbody>
+                <tr align="center">
+                    <td id="statusValues_CheckSystem" class="CHKSYS_OFF">&nbsp;</td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+        </td>
+        <td class="c1">
+            <table class="c3" summary="Five Element Key Key Pad" border="0" cellpadding="10" cellspacing="10">
+                <tbody>
+                <tr align="center">
+                    <td class="WEBS_NOKEY"></td>
+                    <td onclick='portPool.processKey("PLUS")' class="WEBS_KEY">PLUS</td>
+                    <td class="WEBS_NOKEY"></td>
+                </tr>
+                <tr align="center">
+                    <td onclick='portPool.processKey("LEFT")' class="WEBS_KEY">&nbsp;LEFT&nbsp;</td>
+                    <td onclick='portPool.processKey("MENU")' class="WEBS_KEY">MENU</td>
+                    <td onclick='portPool.processKey("RIGHT")' class="WEBS_KEY">RIGHT</td>
+                </tr>
+                <tr align="center">
+                    <td class="WEBS_NOKEY"></td>
+                    <td onclick='portPool.processKey("MINUS")' class="WEBS_KEY">MINUS</td>
+                    <td class="WEBS_NOKEY"></td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div id="statusKeys">
+    <table width="85%" summary="LEDs and Buttons" border="0" cellpadding="1" cellspacing="1">
+        <tbody>
+        <tr>
+            <td id="POOL" onclick='portPool.processKey("POOL_SPA")' class="WEBS_KEY">POOL</td>
+            <td id="SPA" onclick='portPool.processKey("POOL_SPA")' class="WEBS_KEY">SPA</td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <table width="85%" summary="LEDs and Buttons" border="0" cellpadding="1" cellspacing="1">
+        <tbody>
+        <tr>
+            <td id="FILTER" onclick='portPool.processKey("FILTER")' class="WEBS_KEY">FILTER</td>
+            <td id="LIGHTS" onclick='portPool.processKey("LIGHTS")' class="WEBS_KEY">LIGHTS</td>
+        </tr>
+        <tr>
+            <td id="HEATER_1" onclick='portPool.processKey("HEATER_1")' class="WEBS_KEY">Heater1</td>
+            <td id="AUX_1" onclick='portPool.processKey("AUX_1")' class="WEBS_KEY">Solar Heater</td>
+        </tr>
+    </table>
+    <br/>
+    <table width="85%" summary="LEDs and Buttons" border="0" cellpadding="1" cellspacing="1">
+        <tbody>
+        <tr>
+            <td id="VALVE_3" onclick='portPool.processKey("VALVE_3")' class="WEBS_KEY">VALVE_3</td>
+            <td id="VALVE_4" onclick='portPool.processKey("VALVE_4")' class="WEBS_KEY">VALVE_4</td>
+        </tr>
+        <tr>
+            <td id="AUX_2" onclick='portPool.processKey("AUX_1")' class="WEBS_KEY">AUX_2</td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div id="statusValues">
+
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript">
+    </script>
+    <script src="scripts/portPool/index.js" type="text/javascript" >
+    </script>
+    <script type="text/javascript">
+        window.portPool = new PortPool('Aqualogic');
+    </script>
+    </body>
+</html>
