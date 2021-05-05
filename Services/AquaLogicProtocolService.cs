@@ -66,10 +66,11 @@ namespace AqualogicJumper.Services
             // (10H), a NULL character (00H) is inserted into the transmitted
             // data stream immediately after that byte. That NULL character
             // must then be removed by the receiver.
-            await _commandService.TryProcess(token);
+//            await _commandService.TryProcess(token);
             if (!await TryReadFrameStart(token)) return false;
             var frame = await ParseFrame(token);
             await ProcessFrame(frame, token);
+            await _commandService.TryProcess(token);
             return true;
         }
 
@@ -78,14 +79,13 @@ namespace AqualogicJumper.Services
             switch (frame.Type)
             {
                 case FrameType.KeepAlive:
-                    await _commandService.TryProcess(token);
                     break;
                 case FrameType.LocalWiredKeyEvent:
                 case FrameType.RemoteWiredKeyEvent:
                 case FrameType.WirelessKeyEvent:
                 case FrameType.RfRemoteKeyEvent:
                 case FrameType.UnknownRemoteKey:
-                    _log.LogDebug($"{frame.Type}: {(Key)BitConverter.ToInt32(frame.Body[1..5])}");
+//                    _log.LogDebug($"{frame.Type}: {(Key)BitConverter.ToInt32(frame.Body[1..5])}");
                     break;
                 case FrameType.Switches:
                     ProcessSwitchesFrame(frame, frame.Body);
@@ -94,7 +94,7 @@ namespace AqualogicJumper.Services
                     ProcessDisplayUpdateFrame(frame, frame.Body);
                     break;
                 case FrameType.LongDisplayUpdate:
-                    ProcessLongDisplayUpdateFrame(frame);
+//                    ProcessLongDisplayUpdateFrame(frame);
                     break;
                 case FrameType.OnOffEvent:
                     WriteDebug(frame, $"OnOffEvent [{frame.Body.ToHexString()}]");

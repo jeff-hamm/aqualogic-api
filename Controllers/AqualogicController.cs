@@ -99,21 +99,26 @@ namespace AqualogicJumper.Controllers
 
 
         [HttpGet("Setting/{id}")]
-        public SettingValue Setting(string id)
+        public SettingValue Setting(string id, string value = null)
         {
+            if (!String.IsNullOrEmpty(value))
+            {
+                _logger.LogDebug($"HttpPost Setting/{id}, value={value}");
+                _settingService.SetValue(id, value);
+            }
             _logger.LogDebug($"HttpGet Setting/{id}");
             return _settingService?.GetValue(id);
         }
 
 
 
-        [HttpPost("Setting/{id}")]
+/*        [HttpPost("Setting/{id}")]
         public SettingValue Setting(string id, [FromBody] string value = null)
         {
             _logger.LogDebug($"HttpPost Setting/{id}, value={value}");
             _settingService.SetValue(id, value);
             return _settingService.GetValue(id);
-        }
+        }*/
 
     }
 }

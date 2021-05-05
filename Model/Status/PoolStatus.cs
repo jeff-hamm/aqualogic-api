@@ -57,6 +57,7 @@ namespace AqualogicJumper.Model.Status
                 Settings.Clear();
                 foreach (var v in value)
                 {
+
                     Settings.AddOrUpdate(v.Item.Name, v, (_, __) => v);
                 }
             }

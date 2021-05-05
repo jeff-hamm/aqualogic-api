@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -34,14 +35,28 @@ namespace AqualogicJumper
             services.AddControllers().AddJsonOptions(opts =>
             {
                 opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                opts.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddTransient(s => JsonSerializer.Create(new JsonSerializerSettings()
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                DateFormatHandling = DateFormatHandling.MicrosoftDateFormat
+                DateFormatHandling = DateFormatHandling.MicrosoftDateFormat,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                
             }));
-            services.AddSingleton(sp => new DataStore(FileName));
+            services.AddSingleton(sp =>
+            {
+                try
+                {
+                    return new DataStore(FileName);
+                }
+                catch
+                {
+                    File.Delete(FileName);
+                    return new DataStore(FileName);
+                }
+            });
             services.AddSingleton<PoolStatusStore>();
             services.AddSingleton<IAqualogicStream, SerialAqualogicStream>();
             services.AddSingleton<MenuService>();
@@ -51,9 +66,9 @@ namespace AqualogicJumper
             services.AddSingleton<SwitchService>();
             services.AddSingleton<CommandService>();
             services.AddSingleton<AqualogicMessageWriter>();
-            services.AddSingleton(s => s.GetService<MenuService>()?.Sensors);
-            services.AddSingleton(s => s.GetService<MenuService>()?.Menu);
-            services.AddSingleton(s => s.GetService<MenuService>()?.Switches);
+            services.AddSingleton(s => s.GetService<PoolStatusStore>()?.Sensors);
+            services.AddSingleton(s => s.GetService<PoolStatusStore>()?.Menu);
+            services.AddSingleton(s => s.GetService<PoolStatusStore>()?.Switches);
             services.AddSingleton<AquaLogicProtocolService>();
             services.AddSingleton<AqualogicHostedService>();
             services.AddHostedService(sp => sp.GetService<AqualogicHostedService>());

@@ -15,43 +15,23 @@ namespace AqualogicJumper.Services
 {
     public class MenuService : IUpdateProcessor
     {
-        public const string MenuFile = "MenuMap.json";
         private readonly ILogger<MenuService> _log;
-        private readonly JsonSerializer _serializer;
         private readonly CommandService _commandService;
         private readonly PoolStatusStore _store;
         private readonly string  _filePath;
         public static TimeSpan MaxAge { get; } = new TimeSpan(0, 15, 0);
         public static TimeSpan ScanInterval { get; } = new TimeSpan(0, 5, 0);
 
-        public MenuService(ILogger<MenuService> log, JsonSerializer serializer, 
-            IWebHostEnvironment env, CommandService commandService, 
+        public MenuService(ILogger<MenuService> log, CommandService commandService, 
             PoolStatusStore store)
         {
             _log = log;
-            _serializer = serializer;
             _commandService = commandService;
             _store = store;
-            _filePath = Path.Combine(env.WebRootPath, MenuFile);
-            Refresh();
         }
 
-        public void Refresh()
-        {
-            using var reader = File.OpenText(_filePath);
-            using var jsonReader = new JsonTextReader(reader);
-            Menu =_serializer.Deserialize<MenuMap>(jsonReader);
-            if(Menu == null) throw new ArgumentNullException(MenuFile);
-            DefaultMenu = new MenuState(Menus.LastOrDefault(), null, new StatusUpdate());
-            CurrentMenu = DefaultMenu;
-        }
-
-        public MenuMap Menu { get; private set; }
-        public IEnumerable<Sensor> Sensors => DefaultMenu.Menu.Children.OfType<Sensor>();
-        public IEnumerable<Menu> Menus => Menu.Menus;
-        public IEnumerable<Switch> Switches => Menu.Switches;
-
-        public MenuState DefaultMenu { get; private set; }
+        public IEnumerable<Menu> Menus => _store.Menus;
+        public MenuState DefaultMenu => _store.DefaultMenu;
         public MenuState CurrentMenu { get => _store.CurrentMenu; set => _store.CurrentMenu = value; }
         public DateTime? LastScan { get; private set; }
         public Queue<(Key,Regex)> CurrentPath { get; set; }
@@ -83,6 +63,9 @@ namespace AqualogicJumper.Services
             SetMenu(newSetting);
             return true;
         }
+
+
+
         private void SetMenu(MenuState state)
         {
             if (CurrentMenu?.Menu != state?.Menu || CurrentMenu?.Setting != state?.Setting || CurrentMenu?.Text?.Text != state?.Text.Text)

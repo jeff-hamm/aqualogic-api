@@ -13,7 +13,7 @@ namespace AqualogicJumper.Model
     public abstract class MenuNode
     {
         public abstract IEnumerable<MenuValue> Children { get; set; }
-        [JsonIgnore]
+        [JsonIgnore, System.Text.Json.Serialization.JsonIgnore]
         public Menu Menu { get; set; }
         public string Name { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]

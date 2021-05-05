@@ -12,6 +12,7 @@ namespace AqualogicJumper.Services
     {
         public DateTime EnqueueTime { get; } = DateTime.UtcNow;
         public DateTime? LastKeyTime { get; set; }
+        public Key? LastKey { get; set; }
         public DateTime? CompletionTime { get; set; }
         public bool IsActive => LastKeyTime.HasValue;
         public bool IsComplete => CompletionTime.HasValue;
@@ -37,7 +38,24 @@ namespace AqualogicJumper.Services
         {
 
             if (!GetCurrentCommand(out var exec)) return false;
-           
+
+            // If we've already sent a command and not received any updates
+            if (exec.LastKey.HasValue && exec.LastKeyTime.HasValue && _store.LastSavedTime < exec.LastKeyTime)
+            {
+                // resend
+                if (DateTime.UtcNow.Subtract(exec.LastKeyTime.Value) > AqualogicMessageWriter.RateLimitDelay)
+                {
+                    if (await _writer.SendKey(exec.LastKey.Value, token))
+                    {
+                        exec.LastKey = exec.LastKey;
+                        exec.LastKeyTime = DateTime.UtcNow;
+
+                    }
+                }
+
+                //wait
+                return false;
+            }
 
             // Check that the command needs a key
             if (!exec.Command.HasNextKey(_store, out var key))
@@ -49,6 +67,7 @@ namespace AqualogicJumper.Services
             }
 
             _log.LogDebug($"Sending Key {key} for Command {exec.Command}");
+            exec.LastKey = key;
             exec.LastKeyTime = DateTime.UtcNow;
             return true;
         }

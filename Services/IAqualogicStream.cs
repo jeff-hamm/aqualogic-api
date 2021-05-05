@@ -59,7 +59,9 @@ namespace AqualogicJumper.Services
             _port.StopBits = StopBits.Two;
             _port.ReadBufferSize = 256;
             _port.ReadTimeout = ReadTimeout;
-            _port.WriteBufferSize = AqualogicProtocolConstants.KEY_FRAME_LENGTH;
+            _port.WriteBufferSize = AqualogicProtocolConstants.KEY_FRAME_LENGTH *2;
+            _port.Handshake = Handshake.None;
+
             _port.DataReceived += _port_DataReceived;
             _port.Open();
             return true;

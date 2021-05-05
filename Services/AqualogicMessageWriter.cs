@@ -18,7 +18,7 @@ namespace AqualogicJumper.Services
         private readonly ConcurrentQueue<Message> _sendQueue = new ConcurrentQueue<Message>();
         public const int STATE_CHECK_DELAY = 500;
         public static readonly TimeSpan RetryTimeout = new TimeSpan(0,0,30);
-        public static readonly TimeSpan RateLimitDelay = new TimeSpan(0, 0, 0,0,500);
+        public static readonly TimeSpan RateLimitDelay = new TimeSpan(0, 0, 0,0,100);
 
         public AqualogicMessageWriter(ILogger<AqualogicMessageWriter> log, IAqualogicStream stream)
         {

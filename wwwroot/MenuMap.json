@@ -66,19 +66,16 @@
           },
           {
             "name": "Spa Solar",
-            "test": "/^Spa Solar\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$/",
+            "test": "/^Spa Solar\\n((?<Value>[\\d\\.]+).(?<Unit>[FfCc])|(?<Value>Off))$/",
             "format": "$1",
             "unit": "Degrees",
             "type": "Setting",
             "inputs": [ "PLUS", "MINUS" ],
             "isFlashing": true,
-            "parent": {
-              "$ref": "1"
-            }
           },
           {
             "name": "Pool Solar",
-            "test": "/^Pool Solar\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$/",
+            "test": "/^Pool Solar\\n((?<Value>[\\d\\.]+).(?<Unit>[FfCc])|(?<Value>Off))$/",
             "format": "$1",
             "unit": "Degrees",
             "type": "Setting",
@@ -141,15 +138,26 @@
         "type": "Menu",
         "children": [
           {
+            "name": "Cell test",
+            "test": "/\\-?[\\d\\.]+V.*/",
+            "format": "$1",
+            "unit": "String",
+            "type": "Sensor"
+          },
+          {
+            "name": "Instant Salt",
+            "test": "/Instant Salt\\n.*/",
+            "format": "$1",
+            "unit": "String",
+            "type": "Sensor",
+          },
+          {
             "name": "Flow Switch",
             "test": "/^Flow Switch\\n(.*)$/",
             "format": "$1",
             "unit": "String",
             "type": "Sensor",
-            "isFlashing": false,
-            "parent": {
-              "$ref": "3"
-            }
+            "isFlashing": false
           },
           {
             "name": "Cell Temp Sensor",
@@ -250,7 +258,7 @@
           {
             "name": "SaltLevel",
             "test": "/^Salt Level\\n(?<Value>[\\d\\.]+)\\s+(?<Unit>g/L|PPM|)$/",
-            "format": "$1 $2",
+            "format": "$1",
             "unit": "Concentration",
             "type": "Sensor",
             "isFlashing": false
