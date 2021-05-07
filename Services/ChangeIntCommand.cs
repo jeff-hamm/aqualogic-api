@@ -7,6 +7,7 @@ namespace AqualogicJumper.Services
     {
         private readonly Setting _setting;
         public int Value { get; }
+        public override int Priority { get; } = 1;
 
         public SettingUpdateCommand(Setting setting, int value) : base(setting)
         {

@@ -6,6 +6,7 @@ namespace AqualogicJumper.Services
     {
         public SwitchName Switch { get; }
         public bool Value { get; }
+        public override int Priority { get; } = 2;
 
         public ToggleSwitchCommand(SwitchName @switch, bool value)
         {

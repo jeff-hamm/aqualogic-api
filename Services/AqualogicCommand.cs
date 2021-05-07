@@ -7,6 +7,8 @@ namespace AqualogicJumper.Services
         public AqualogicCommand()
         {
         }
+
+        public virtual int Priority { get; } = 0;
         public bool Complete { get; private set; }
         public Key? LastKey { get; private set; }
         public bool HasNextKey(PoolStatusStore state, out Key key)

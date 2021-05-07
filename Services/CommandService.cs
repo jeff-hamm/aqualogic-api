@@ -2,6 +2,8 @@
 using AqualogicJumper.Services;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -24,7 +26,7 @@ namespace AqualogicJumper.Services
         private readonly ILogger<CommandService> _log;
         private readonly AqualogicMessageWriter _writer;
         private readonly PoolStatusStore _store;
-        private readonly ConcurrentQueue<CommandExecution> _commands = new ConcurrentQueue<CommandExecution>();
+        private readonly HashSet<CommandExecution> _commands = new();
         public AqualogicCommand Current { get; private set; }
 
         public CommandService(ILogger<CommandService> log, AqualogicMessageWriter writer, PoolStatusStore store)
@@ -75,8 +77,11 @@ namespace AqualogicJumper.Services
 
         private bool GetCurrentCommand(out CommandExecution exec)
         {
-            while (_commands.TryPeek(out exec))
+            var commands = _commands.OrderByDescending(c => c.Command.Priority).ToArray();
+            exec = null;
+            foreach(var check in commands)
             {
+                exec = check;
                 // if this command is active, return it.
                 if (!exec.IsComplete && !exec.Command.Complete)
                     return true;
@@ -84,7 +89,7 @@ namespace AqualogicJumper.Services
                 // If the command has already completed, remove it from the queue and loop
                 if (exec.Command.Complete)
                     exec.CompletionTime = DateTime.UtcNow;
-                _commands.TryDequeue(out _);
+                _commands.Remove(check);
                 _log.LogInformation($"[Complete]{exec.Command}");
             }
 
@@ -93,7 +98,7 @@ namespace AqualogicJumper.Services
 
         private void Enqueue(AqualogicCommand cmd)
         {
-            _commands.Enqueue(new CommandExecution()
+            _commands.Add(new CommandExecution()
             {
                 Command = cmd,
             });
