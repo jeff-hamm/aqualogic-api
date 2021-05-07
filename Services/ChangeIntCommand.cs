@@ -26,7 +26,7 @@ namespace AqualogicJumper.Services
             if (!base.IsComplete(state))
                 return base.NextKey(state);
             var value = CurrentValue(state);
-            if (!value.HasValue) return Key.None;
+            if (!value.HasValue) return Key.PLUS;
             return Value > value ? Key.PLUS : Key.MINUS;
         }
 

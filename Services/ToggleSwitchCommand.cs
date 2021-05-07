@@ -14,10 +14,8 @@ namespace AqualogicJumper.Services
         }
         protected override bool IsComplete(PoolStatusStore state)
         {
-            var current = state.IsToggled(Switch);
-            if (current == Value) return true;
-            return !state.PendingSwitches.TryGetValue(Switch, out var p) ||
-                                               state.ToggledSwitches.Contains(Switch) == Value;
+            var current = state.ToggledSwitches.Contains(Switch);
+            return (current == Value);
         }
 
         protected override Key NextKey(PoolStatusStore state)

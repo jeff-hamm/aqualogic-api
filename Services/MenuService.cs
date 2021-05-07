@@ -103,8 +103,6 @@ namespace AqualogicJumper.Services
             }
 
             foreach (var menu in toScan) {
-                if(menu.Name != "Diagnostic")
-                    continue;
                 ScanMenu(menu);
         }
 

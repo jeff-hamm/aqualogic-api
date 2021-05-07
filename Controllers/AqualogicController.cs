@@ -69,11 +69,15 @@ namespace AqualogicJumper.Controllers
             return _store.History;
         }
         [HttpGet("Switch/{id}")]
-        public bool? Switch(string id)
+        public bool? GetSwitch(string id,bool? value = null)
         {
             _logger.LogDebug($"HttpGet Switch/{id}");
             if (Enum.TryParse(id, true, out SwitchName stateVal))
+            {
+                if(value.HasValue)
+                    _switchService.Toggle(stateVal, value);
                 return _store.IsToggled(stateVal);
+            }
 
             return null;
         }
@@ -81,6 +85,7 @@ namespace AqualogicJumper.Controllers
         [HttpPost("Switch/{id}")]
         public bool? Switch(string id, [FromBody]bool? value=null)
         {
+            
             _logger.LogDebug($"HttpPost Switch/{id}, value={value}");
             if (Enum.TryParse(id, true, out SwitchName stateVal)) {
                 _switchService.Toggle(stateVal, value);
@@ -99,7 +104,7 @@ namespace AqualogicJumper.Controllers
 
 
         [HttpGet("Setting/{id}")]
-        public SettingValue Setting(string id, string value = null)
+        public SettingValue GetSetting(string id, string value = null)
         {
             if (!String.IsNullOrEmpty(value))
             {
@@ -112,13 +117,17 @@ namespace AqualogicJumper.Controllers
 
 
 
-/*        [HttpPost("Setting/{id}")]
+        [HttpPost("Setting/{id}")]
         public SettingValue Setting(string id, [FromBody] string value = null)
         {
-            _logger.LogDebug($"HttpPost Setting/{id}, value={value}");
-            _settingService.SetValue(id, value);
-            return _settingService.GetValue(id);
-        }*/
+            if (!String.IsNullOrEmpty(value))
+            {
+                _logger.LogDebug($"HttpPost Setting/{id}, value={value}");
+                _settingService.SetValue(id, value);
+            }
+            _logger.LogDebug($"HttpGet Setting/{id}");
+            return _settingService?.GetValue(id);
+        }
 
     }
 }
