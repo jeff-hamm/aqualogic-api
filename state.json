@@ -1,8 +1,8 @@
 {
   "poolStatusStore": {
     "displayText": {
-      "timestamp": "2021-05-03T18:13:36.4610393Z",
-      "text": "Air Temp\n90_F",
+      "timestamp": "2021-05-07T22:30:47.3649036Z",
+      "text": "Solar Sensor\n83_F",
       "isFlashing": false
     },
     "flashingStates": [
@@ -14,45 +14,45 @@
           "children": [],
           "name": "PoolChlorinator",
           "type": "Sensor",
-          "format": "$1%",
+          "format": "$1",
           "test": {
-            "pattern": "^Pool Chlorinator\\n(?<Value>[\\d\\.]+)%$",
+            "pattern": "^Pool Chlorinator\\n(?<Value>[\\d\\.]+)%",
             "options": 0
           },
           "isFlashing": false
         },
-        "value": "50%",
-        "lastModified": "2021-05-03T18:09:38.5850449Z"
+        "value": "1",
+        "lastModified": "2021-05-07T22:30:02.2931713Z"
       },
       {
         "item": {
           "children": [],
-          "name": "AirTemp",
+          "name": "Flow Switch",
           "type": "Sensor",
           "format": "$1",
           "test": {
-            "pattern": "^Air Temp\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$",
+            "pattern": "^Flow Switch\\n(.*)",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "Flow",
+        "lastModified": "2021-05-07T22:30:10.7237758Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "Solar Sensor",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Solar Sensor\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])",
             "options": 0
           },
           "isFlashing": null
         },
-        "value": "90",
-        "lastModified": "2021-05-03T18:13:36.4641847Z"
-      },
-      {
-        "item": {
-          "children": [],
-          "name": "SaltLevel",
-          "type": "Sensor",
-          "format": "$1",
-          "test": {
-            "pattern": "^Salt Level\\n(?<Value>[\\d\\.]+)\\s+(?<Unit>g/L|PPM|)$",
-            "options": 0
-          },
-          "isFlashing": false
-        },
-        "value": "3300",
-        "lastModified": "2021-05-03T18:09:18.5749482Z"
+        "value": "83",
+        "lastModified": "2021-05-07T22:30:47.3674796Z"
       },
       {
         "item": {
@@ -61,13 +61,13 @@
           "type": "Sensor",
           "format": "$1",
           "test": {
-            "pattern": "^Pool Temp\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$",
+            "pattern": "^Pool Temp\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])",
             "options": 0
           },
           "isFlashing": null
         },
-        "value": "90",
-        "lastModified": "2021-05-03T18:13:36.0679934Z"
+        "value": "92",
+        "lastModified": "2021-05-07T22:30:04.3527631Z"
       },
       {
         "item": {
@@ -76,13 +76,73 @@
           "type": "Sensor",
           "format": "$1",
           "test": {
-            "pattern": "^Heater1\n(?<Value>Auto Control|Manual Off)$",
+            "pattern": "^Heater1\n(?<Value>Auto Control|Manual Off)",
             "options": 0
           },
           "isFlashing": false
         },
-        "value": "Auto Control",
-        "lastModified": "2021-05-03T18:09:22.5747435Z"
+        "value": "Manual Off",
+        "lastModified": "2021-05-07T22:30:03.0602688Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "Cell test",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "(\\-?[\\d\\.]+V.*)|(Chlorinator Off.*)",
+            "options": 0
+          },
+          "isFlashing": null
+        },
+        "value": "\nPercentage met",
+        "lastModified": "2021-05-07T22:30:08.7243047Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "Air Sensor",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Air Sensor\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])",
+            "options": 0
+          },
+          "isFlashing": null
+        },
+        "value": "85",
+        "lastModified": "2021-05-07T22:30:12.7237061Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "Instant Salt",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "Instant Salt\\n.*",
+            "options": 0
+          },
+          "isFlashing": null
+        },
+        "value": "$1",
+        "lastModified": "2021-05-07T22:30:09.1224791Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "AirTemp",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Air Temp\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])",
+            "options": 0
+          },
+          "isFlashing": null
+        },
+        "value": "85",
+        "lastModified": "2021-05-07T22:30:01.8935606Z"
       },
       {
         "item": {
@@ -91,13 +151,58 @@
           "type": "Sensor",
           "format": "$1 $2:$3 $4M",
           "test": {
-            "pattern": "^(?<Day>Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday)\\n(?<Hour>\\d+).(?<Minute>\\d+)(?<Meridiem>[AP])$",
+            "pattern": "^(?<Day>Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday)\\n(?<Hour>\\d+).(?<Minute>\\d+)(?<Meridiem>[AP])",
             "options": 0
           },
           "isFlashing": true
         },
-        "value": "Wednesday 2:12 PM",
-        "lastModified": "2021-05-03T18:13:35.5666064Z"
+        "value": "Sunday 6:29 PM",
+        "lastModified": "2021-05-07T22:30:03.5029007Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "SaltLevel",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Salt Level\\n(?<Value>[\\d\\.]+)\\s+(?<Unit>g/L|PPM|)",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "3100",
+        "lastModified": "2021-05-07T22:30:02.6761269Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "Water Sensor",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Water Sensor\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])",
+            "options": 0
+          },
+          "isFlashing": null
+        },
+        "value": "92",
+        "lastModified": "2021-05-07T22:30:12.2234118Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "Cell Temp Sensor",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Cell Temp Sensor\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])",
+            "options": 0
+          },
+          "isFlashing": null
+        },
+        "value": "92",
+        "lastModified": "2021-05-07T22:30:11.1231629Z"
       }
     ],
     "settingValues": [],
@@ -106,15 +211,13 @@
       0,
       2,
       8,
-      32,
-      64,
-      33554432
+      32
     ]
   },
   "poolHistory": {
     "displayText": {
-      "timestamp": "2021-05-03T18:13:36.4610393Z",
-      "text": "Air Temp\n90_F",
+      "timestamp": "2021-05-07T22:30:47.3649036Z",
+      "text": "Solar Sensor\n83_F",
       "isFlashing": false
     },
     "flashingStates": [
@@ -126,45 +229,45 @@
           "children": [],
           "name": "PoolChlorinator",
           "type": "Sensor",
-          "format": "$1%",
+          "format": "$1",
           "test": {
-            "pattern": "^Pool Chlorinator\\n(?<Value>[\\d\\.]+)%$",
+            "pattern": "^Pool Chlorinator\\n(?<Value>[\\d\\.]+)%",
             "options": 0
           },
           "isFlashing": false
         },
-        "value": "50%",
-        "lastModified": "2021-05-03T18:09:38.5850449Z"
+        "value": "1",
+        "lastModified": "2021-05-07T22:30:02.2931713Z"
       },
       {
         "item": {
           "children": [],
-          "name": "AirTemp",
+          "name": "Flow Switch",
           "type": "Sensor",
           "format": "$1",
           "test": {
-            "pattern": "^Air Temp\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$",
+            "pattern": "^Flow Switch\\n(.*)",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "Flow",
+        "lastModified": "2021-05-07T22:30:10.7237758Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "Solar Sensor",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Solar Sensor\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])",
             "options": 0
           },
           "isFlashing": null
         },
-        "value": "90",
-        "lastModified": "2021-05-03T18:13:36.4641847Z"
-      },
-      {
-        "item": {
-          "children": [],
-          "name": "SaltLevel",
-          "type": "Sensor",
-          "format": "$1",
-          "test": {
-            "pattern": "^Salt Level\\n(?<Value>[\\d\\.]+)\\s+(?<Unit>g/L|PPM|)$",
-            "options": 0
-          },
-          "isFlashing": false
-        },
-        "value": "3300",
-        "lastModified": "2021-05-03T18:09:18.5749482Z"
+        "value": "83",
+        "lastModified": "2021-05-07T22:30:47.3674796Z"
       },
       {
         "item": {
@@ -173,13 +276,13 @@
           "type": "Sensor",
           "format": "$1",
           "test": {
-            "pattern": "^Pool Temp\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])$",
+            "pattern": "^Pool Temp\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])",
             "options": 0
           },
           "isFlashing": null
         },
-        "value": "90",
-        "lastModified": "2021-05-03T18:13:36.0679934Z"
+        "value": "92",
+        "lastModified": "2021-05-07T22:30:04.3527631Z"
       },
       {
         "item": {
@@ -188,13 +291,73 @@
           "type": "Sensor",
           "format": "$1",
           "test": {
-            "pattern": "^Heater1\n(?<Value>Auto Control|Manual Off)$",
+            "pattern": "^Heater1\n(?<Value>Auto Control|Manual Off)",
             "options": 0
           },
           "isFlashing": false
         },
-        "value": "Auto Control",
-        "lastModified": "2021-05-03T18:09:22.5747435Z"
+        "value": "Manual Off",
+        "lastModified": "2021-05-07T22:30:03.0602688Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "Cell test",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "(\\-?[\\d\\.]+V.*)|(Chlorinator Off.*)",
+            "options": 0
+          },
+          "isFlashing": null
+        },
+        "value": "\nPercentage met",
+        "lastModified": "2021-05-07T22:30:08.7243047Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "Air Sensor",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Air Sensor\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])",
+            "options": 0
+          },
+          "isFlashing": null
+        },
+        "value": "85",
+        "lastModified": "2021-05-07T22:30:12.7237061Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "Instant Salt",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "Instant Salt\\n.*",
+            "options": 0
+          },
+          "isFlashing": null
+        },
+        "value": "$1",
+        "lastModified": "2021-05-07T22:30:09.1224791Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "AirTemp",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Air Temp\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])",
+            "options": 0
+          },
+          "isFlashing": null
+        },
+        "value": "85",
+        "lastModified": "2021-05-07T22:30:01.8935606Z"
       },
       {
         "item": {
@@ -203,13 +366,58 @@
           "type": "Sensor",
           "format": "$1 $2:$3 $4M",
           "test": {
-            "pattern": "^(?<Day>Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday)\\n(?<Hour>\\d+).(?<Minute>\\d+)(?<Meridiem>[AP])$",
+            "pattern": "^(?<Day>Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday)\\n(?<Hour>\\d+).(?<Minute>\\d+)(?<Meridiem>[AP])",
             "options": 0
           },
           "isFlashing": true
         },
-        "value": "Wednesday 2:12 PM",
-        "lastModified": "2021-05-03T18:13:35.5666064Z"
+        "value": "Sunday 6:29 PM",
+        "lastModified": "2021-05-07T22:30:03.5029007Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "SaltLevel",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Salt Level\\n(?<Value>[\\d\\.]+)\\s+(?<Unit>g/L|PPM|)",
+            "options": 0
+          },
+          "isFlashing": false
+        },
+        "value": "3100",
+        "lastModified": "2021-05-07T22:30:02.6761269Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "Water Sensor",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Water Sensor\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])",
+            "options": 0
+          },
+          "isFlashing": null
+        },
+        "value": "92",
+        "lastModified": "2021-05-07T22:30:12.2234118Z"
+      },
+      {
+        "item": {
+          "children": [],
+          "name": "Cell Temp Sensor",
+          "type": "Sensor",
+          "format": "$1",
+          "test": {
+            "pattern": "^Cell Temp Sensor\\n(?<Value>[\\d\\.]+).(?<Unit>[FfCc])",
+            "options": 0
+          },
+          "isFlashing": null
+        },
+        "value": "92",
+        "lastModified": "2021-05-07T22:30:11.1231629Z"
       }
     ],
     "settingValues": [],
@@ -218,9 +426,7 @@
       0,
       2,
       8,
-      32,
-      64,
-      33554432
+      32
     ]
   }
 }

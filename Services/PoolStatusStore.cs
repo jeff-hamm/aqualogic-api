@@ -53,7 +53,8 @@ namespace AqualogicJumper.Services
         }
 
         public MenuMap Menu { get; private set; }
-        public IEnumerable<Sensor> Sensors => DefaultMenu.Menu.Children.OfType<Sensor>();
+        private Sensor[] _sensors;
+        public IEnumerable<Sensor> Sensors => _sensors ??= Menus.SelectMany(m => m.Children.OfType<Sensor>()).ToArray();
         public IEnumerable<Menu> Menus => Menu.Menus;
         public IEnumerable<Switch> Switches => Menu.Switches;
 

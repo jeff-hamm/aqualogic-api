@@ -40,6 +40,7 @@ namespace AqualogicJumper.Services
             {
                 if (!sensor.TryMatch(update, out var m)) continue;
                 var value = sensor.Test.Replace(update.Text, sensor.Format);
+                _log.LogInformation($"Updating sesnsor {sensor.Name} to {value}");
                 var v = _status.Status.Values.AddOrUpdate(sensor.Name, 
                     name => new SensorValue()
                     {
