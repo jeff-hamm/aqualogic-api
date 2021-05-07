@@ -18,7 +18,6 @@ namespace AqualogicJumper.Services
         private readonly ILogger<MenuService> _log;
         private readonly CommandService _commandService;
         private readonly PoolStatusStore _store;
-        private readonly string  _filePath;
         public static TimeSpan MaxAge { get; } = new TimeSpan(0, 15, 0);
         public static TimeSpan ScanInterval { get; } = new TimeSpan(0, 5, 0);
 
@@ -56,7 +55,8 @@ namespace AqualogicJumper.Services
                 .FirstOrDefault(sm => sm != null);
             if (newSetting == null)
             {
-                SetMenu(DefaultMenu);
+
+//                SetMenu(DefaultMenu);
                 return false;
             }
 
@@ -77,6 +77,7 @@ namespace AqualogicJumper.Services
         }
 
         private readonly ConcurrentDictionary<Menu, DateTime> _lastScanTime = new ConcurrentDictionary<Menu, DateTime>();
+
         private void Scan(StatusUpdate update)
         {
             var toScan = new HashSet<Menu>();
@@ -92,7 +93,7 @@ namespace AqualogicJumper.Services
                         _store.Status.Settings.TryRemove(value.Item.Name, out _);
                         _store.SaveChanges();
                         toScan.Add(menu);
-                    }   
+                    }
                 }
 
                 if (!_lastScanTime.TryGetValue(menu, out var scan) || DateTime.UtcNow.Subtract(scan) > ScanInterval)
@@ -101,11 +102,14 @@ namespace AqualogicJumper.Services
 
             }
 
-            foreach (var menu in toScan)
+            foreach (var menu in toScan) {
+                if(menu.Name != "Diagnostic")
+                    continue;
                 ScanMenu(menu);
-
-
         }
+
+
+    }
         
         private void ScanMenu(Menu menu)
         {
@@ -115,7 +119,8 @@ namespace AqualogicJumper.Services
             }
 
             _lastScanTime.AddOrUpdate(menu, DateTime.UtcNow, (m, t) => DateTime.UtcNow);
-            _commandService.Select(menu.Children.Last());
+            if(menu.Children.Any())
+                _commandService.Select(menu.Children.Last());
         }
         
         public bool TryFindSetting(string name, out Setting setting)

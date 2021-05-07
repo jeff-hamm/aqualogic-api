@@ -42,19 +42,19 @@
         "children": [
           {
             "name": "Spa Heater1",
-            "test": "/^Spa Heater1\\n((?<Value>[\\d\\.]+).(?<Unit>[FfCc])|(?<Value>Off))$/",
+            "test": "/^Spa Heater1\\n((?<Value>[\\d\\.]+).(?<Unit>[FfCc])|(?<Value>Off)|(?<Value>Manual Off))$/",
             "format": "${Value}",
             "unit": "Degrees",
             "type": "Setting",
             "inputs": [ "PLUS", "MINUS" ],
             "isFlashing": true,
             "parent": {
-                "$ref": "1"
-            } 
+              "$ref": "1"
+            }
           },
           {
             "name": "Pool Heater1",
-            "test": "/^Pool Heater1\\n((?<Value>[\\d\\.]+).(?<Unit>[FfCc])|(?<Value>Off))$/",
+            "test": "/^Pool Heater1\\n((?<Value>[\\d\\.]+).(?<Unit>[FfCc])|(?<Value>Off)|(?<Value>Manual Off))$/",
             "format": "${Value}",
             "unit": "Degrees",
             "type": "Setting",
@@ -87,7 +87,7 @@
           },
           {
             "name": "Super Chlorinate",
-            "test": "/^Super Chlorinate\n(?<Value>Off|On)$/",
+            "test": "/^Super Chlorinate\\n(((?<Value>[\\d\\.]+)%)|(?<Value>Off|On))$/",
             "format": "$1",
             "unit": "Boolean",
             "type": "Setting",
@@ -99,19 +99,16 @@
           },
           {
             "name": "Spa Chlorinator",
-            "test": "/^Spa Chlorinator\n(?<Value>[\\d\\.]+)%$/",
+            "test": "/^Spa Chlorinator\\n(((?<Value>[\\d\\.]+)%)?\\n?(?<Value>Off|On)?)$/",
             "format": "$1%",
             "unit": "Percentage",
             "type": "Setting",
             "inputs": [ "PLUS", "MINUS" ],
-            "isFlashing": true,
-            "parent": {
-              "$ref": "1"
-            }
+            "isFlashing": true
           },
           {
             "name": "Pool Chlorinator",
-            "test": "/^Pool Chlorinator\\n(?<Value>[\\d\\.]+)%$/",
+            "test": "/^Pool Chlorinator\\n(((?<Value>[\\d\\.]+)%)?\\n?(?<Value>Off|On)?)$/",
             "format": "$1%",
             "unit": "Percentage",
             "type": "Setting",
@@ -124,7 +121,6 @@
         ]
       },
       {
-        "$id":  "2", 
         "name": "Timers",
         "test": "/^Timers\nMenu$/",
         "type": "Menu",
@@ -132,14 +128,13 @@
       },
       {
 
-        "$id": "3",
         "name": "Diagnostic",
         "test": "/^Diagnostic\nMenu$/",
         "type": "Menu",
         "children": [
           {
             "name": "Cell test",
-            "test": "/\\-?[\\d\\.]+V.*/",
+            "test": "/(\\-?[\\d\\.]+V.*)|(Chlorinator Off.*)/",
             "format": "$1",
             "unit": "String",
             "type": "Sensor"

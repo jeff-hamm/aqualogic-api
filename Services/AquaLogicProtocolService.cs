@@ -69,12 +69,12 @@ namespace AqualogicJumper.Services
 //            await _commandService.TryProcess(token);
             if (!await TryReadFrameStart(token)) return false;
             var frame = await ParseFrame(token);
-            await ProcessFrame(frame, token);
+            ProcessFrame(frame, token);
             await _commandService.TryProcess(token);
             return true;
         }
 
-        private async Task ProcessFrame(Frame frame, CancellationToken token)
+        private void ProcessFrame(Frame frame, CancellationToken token)
         {
             switch (frame.Type)
             {
